@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/BfArM-MVH/grz-cli/compare/v0.1.4...v0.1.5) (2025-03-05)
+
+
+### Bug Fixes
+
+* Ensure exact R1/R2 mappings in paired end sequencing submissions ([#22](https://github.com/BfArM-MVH/grz-cli/issues/22)) ([cdc3f9a](https://github.com/BfArM-MVH/grz-cli/commit/cdc3f9a1968950a45c20a35e39d4be504635c9c4))
+* ensure reference genomes are consistent ([#26](https://github.com/BfArM-MVH/grz-cli/issues/26)) ([849c6b2](https://github.com/BfArM-MVH/grz-cli/commit/849c6b25d8a92b0d68be45c7ba31348b1f937681))
+
 ## [0.1.4](https://github.com/BfArM-MVH/grz-cli/compare/v0.1.3...v0.1.4) (2025-02-21)
 
 
