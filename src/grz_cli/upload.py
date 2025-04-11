@@ -98,8 +98,11 @@ class S3BotoUploadWorker(UploadWorker):
                 return string
 
         # configure proxies if proxy_url is defined
-        proxy_url = empty_str_to_none(self._config.s3_options.proxy_url)
-        config = Boto3Config(proxies={"http": proxy_url, "https": proxy_url}) if proxy_url is not None else None
+        proxy_url = self._config.s3_options.proxy_url
+        config = Boto3Config(
+            proxies={"http": str(proxy_url), "https": str(proxy_url)} if proxy_url is not None else None,
+            request_checksum_calculation=self._config.s3_options.request_checksum_calculation,
+        )
 
         # Initialize S3 client for uploading
         self._s3_client: boto3.session.Session.client = boto3_client(
@@ -130,7 +133,9 @@ class S3BotoUploadWorker(UploadWorker):
             if filesize / MULTIPART_CHUNKSIZE > MULTIPART_MAX_CHUNKS
             else MULTIPART_CHUNKSIZE
         )
-        self.__log.debug(f"Using a chunksize of: {chunksize / 1024**2}MiB, results in {filesize / chunksize} chunks")
+        self.__log.debug(
+            f"Using a chunksize of: {chunksize / 1024**2}MiB, results in {math.ceil(filesize / chunksize)} chunk(s)"
+        )
 
         config = TransferConfig(
             multipart_threshold=MULTIPART_THRESHOLD,
