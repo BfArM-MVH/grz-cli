@@ -143,7 +143,7 @@ class S3BotoUploadWorker(UploadWorker):
         return exists
 
     @override
-    def upload(self, encrypted_submission: EncryptedSubmission):  # pyrefly: ignore
+    def upload(self, encrypted_submission: EncryptedSubmission, with_logs: bool = False):  # noqa: C901 # pyrefly: ignore
         """
         Upload an encrypted submission
         :param encrypted_submission: The encrypted submission to upload
@@ -156,6 +156,9 @@ class S3BotoUploadWorker(UploadWorker):
 
         files_to_upload = encrypted_submission.get_encrypted_files_and_object_id()
         files_to_upload[metadata_file_path] = metadata_s3_object_id
+
+        if with_logs:
+            files_to_upload.update(encrypted_submission.get_log_files_and_object_id())
 
         for file_path in files_to_upload:
             if not Path(file_path).exists():
@@ -199,6 +202,16 @@ class S3BotoUploadWorker(UploadWorker):
                     str(file_path),
                     str(s3_object_id),
                 )
+
+        if with_logs:
+            # do not track upload state, instead just reupload in case of a failure
+            for file_path, s3_object_id in encrypted_submission.get_log_files_and_object_id().items():
+                try:
+                    self.upload_file(file_path, s3_object_id)
+                    self.__log.info(f"Upload complete for {str(file_path)}.")
+                except Exception as e:
+                    self.__log.error("Upload failed for '%s'", str(file_path))
+                    raise e
 
         # finally upload the metadata.json file, unconditionally:
         try:
