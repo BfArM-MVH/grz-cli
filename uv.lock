@@ -387,6 +387,11 @@ name = "grz-check-provider"
 version = "0.1.0"
 source = { editable = "packages/grz-check-provider" }
 
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [{ name = "cibuildwheel", specifier = ">=3.0.0" }]
+
 [[package]]
 name = "grz-cli"
 source = { editable = "packages/grz-cli" }
@@ -477,7 +482,7 @@ dev = [
 
 [[package]]
 name = "grz-db"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "packages/grz-db" }
 dependencies = [
     { name = "alembic" },
