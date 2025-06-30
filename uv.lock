@@ -390,7 +390,11 @@ source = { editable = "packages/grz-check-provider" }
 [package.metadata]
 
 [package.metadata.requires-dev]
-dev = [{ name = "cibuildwheel", specifier = ">=3.0.0" }]
+dev = [
+    { name = "cibuildwheel", specifier = ">=3.0.0" },
+    { name = "tox" },
+    { name = "tox-uv" },
+]
 
 [[package]]
 name = "grz-cli"
