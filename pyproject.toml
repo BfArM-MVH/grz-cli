@@ -46,6 +46,7 @@ lint = [
     "ruff",
     "types-pyyaml",
     "types-tqdm",
+    "types-boto3[s3] >=1.36,<2",
     "pydantic",
     "mypy",
 ]
@@ -172,7 +173,11 @@ commands = [["mypy"]]
 [tool.mypy]
 python_version = "3.12"
 plugins = "pydantic.mypy"
-packages = "grz_cli,grzctl,grz_pydantic_models"
+packages = "grz_cli,grzctl,grz_pydantic_models,grz_db,grz_common"
+
+[[tool.mypy.overrides]]
+module = "crypt4gh.*"
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts = [

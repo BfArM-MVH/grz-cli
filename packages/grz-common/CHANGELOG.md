@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.2](https://github.com/BfArM-MVH/grz-tools/compare/grz-common-v1.0.1...grz-common-v1.0.2) (2025-07-03)
+
+
+### Bug Fixes
+
+* **grz-common,grz-cli,grzctl:** fix encrypt caching ([#257](https://github.com/BfArM-MVH/grz-tools/issues/257)) ([3d86767](https://github.com/BfArM-MVH/grz-tools/commit/3d86767c77352e1a44807e312faac7604bd04de8))
+* **grz-common,grzctl,grz-cli:** remove runtime dependency on type stubs ([#258](https://github.com/BfArM-MVH/grz-tools/issues/258)) ([a116499](https://github.com/BfArM-MVH/grz-tools/commit/a116499de19655ec9c4a43093c2c077dd10efbbc))
+
+## [1.0.1](https://github.com/BfArM-MVH/grz-tools/compare/grz-common-v1.0.0...grz-common-v1.0.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **grz-cli,grzctl:** ignore missing log files if force enabled ([#249](https://github.com/BfArM-MVH/grz-tools/issues/249)) ([f29099f](https://github.com/BfArM-MVH/grz-tools/commit/f29099f147cbe5cdd1ad21eb5f3ef0e42d7385d2))
+* **grz-db,grzctl:** address previously unchecked mypy type checks ([#247](https://github.com/BfArM-MVH/grz-tools/issues/247)) ([e51a65b](https://github.com/BfArM-MVH/grz-tools/commit/e51a65b090c891f44c6c4cc7199138d4cb15c07a))
+
 ## [1.0.0](https://github.com/BfArM-MVH/grz-tools/compare/grz-common-v0.1.0...grz-common-v1.0.0) (2025-06-30)
 
 
